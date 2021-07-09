@@ -1,3 +1,5 @@
-The events stored in the root file are of type DGEvent, which is defined in the files DGBuffers.[h,C].
+The code in this repository allows to read the Double Gap (DG) events stored in a root file.
 
-loopDGEvent.C demonstrates how to loop over DGEvents contained in a root file with DG events. The script contains extensive comments.
+The events are of type DGEvent, which is defined in the files DGBuffers.[h,C].
+
+loopDGEvent.C demonstrates how to loop over the events. The script contains extensive comments.
