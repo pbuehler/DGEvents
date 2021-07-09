@@ -41,7 +41,7 @@ void eventLooper (char* fnin)
     for (auto jj=0; jj<ntrks; jj++) {
       printf("Particle %i \n", jj);
       
-      // get the ii track of type DDTrack (see DGBuffers.[h,C])
+      // get the ii track of type DGTrack (see DGBuffers.[h,C])
       auto trk = (DGTrack*) (trks->At(jj));
       
       // track momentum is a TVector3 (see DGBuffers.[h,C])
