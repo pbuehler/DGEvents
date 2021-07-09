@@ -23,11 +23,6 @@ void eventLooper (TObjArray fnins)
   }
   ch->SetBranchAddress("event", &dgevent);
 
-  //TFile *ftr = new TFile(fnin,"READ");
-  //TTree *tr = (TTree*)ftr->Get("CEPTree");
-  //if (tr == NULL) return;
-  //tr->SetBranchAddress("event", &dgevent);
-  
   // Now loop over all events
   Long64_t nev = ch->GetEntries();
   printf("Number of events: %lli\n", nev);
@@ -68,10 +63,6 @@ void eventLooper (TObjArray fnins)
       }
     }
   }
-  
-  // clean up
-  //ftr->Close();
-
 }
 
 // ---------------------------------------------------------------------------
