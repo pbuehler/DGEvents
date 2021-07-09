@@ -1,0 +1,3 @@
+The events stored in the root file are of type DGEvent, which is defined in the files DGBuffers.[h,C].
+
+loopDGEvent.C demonstrates how to loop over DGEvents contained in a root file with DG events. The script contains extensive comments.
