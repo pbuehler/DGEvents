@@ -1,27 +1,39 @@
 #include "DGBuffers.h"
 //
 // usage:
-// eventLooper ("LHC17_18_AnalysisTree_2_2_10_2pi_A.root")
+// auto fnins = TObjArray()
+// fnins.Add(new TObjString("LHC17_18_AnalysisTree_2_2_2_2pi000_A.root"));
+// fnins.Add(new TObjString("LHC17_18_AnalysisTree_2_2_2_2pi001_A.root"));
+// .
+// . add more files to fnins
+// .
+// eventLooper (fnins)
 //
 // ---------------------------------------------------------------------------
-void eventLooper (char* fnin)
+void eventLooper (TObjArray fnins)
 {
   // DGEvent contains the full information of an event.
   // see DGBuffers.[h,C] for details.
   DGEvent *dgevent = new DGEvent();
 
   // The events are contained in the tree "CEPTree" and branch "event".
-  TFile *ftr = new TFile(fnin,"READ");
-  TTree *tr = (TTree*)ftr->Get("CEPTree");
-  if (tr == NULL) return;
-  tr->SetBranchAddress("event", &dgevent);
+  TChain *ch = new TChain("CEPTree");
+  for (auto fn : fnins) {
+    ch->Add(((TObjString*)fn)->GetString().Data());
+  }
+  ch->SetBranchAddress("event", &dgevent);
+
+  //TFile *ftr = new TFile(fnin,"READ");
+  //TTree *tr = (TTree*)ftr->Get("CEPTree");
+  //if (tr == NULL) return;
+  //tr->SetBranchAddress("event", &dgevent);
   
   // Now loop over all events
-  Long64_t nev = tr->GetEntries();
+  Long64_t nev = ch->GetEntries();
   printf("Number of events: %lli\n", nev);
   for (auto ii=0; ii<nev; ii++) {
     // fill dgevent with the next event
-    tr->GetEntry(ii);
+    ch->GetEntry(ii);
     
     printf("\n");
     printf("Event %i\n", ii);
@@ -35,7 +47,7 @@ void eventLooper (char* fnin)
     // the resulting trks is a TObjArray*
     auto trks = dgevent->tracks();
     auto ntrks = trks->GetEntries();
-    printf("Number of tracks: %lli\n", ntrks);
+    printf("Number of tracks: %i\n", ntrks);
     
     // loop over the tracks
     for (auto jj=0; jj<ntrks; jj++) {
@@ -58,7 +70,7 @@ void eventLooper (char* fnin)
   }
   
   // clean up
-  ftr->Close();
+  //ftr->Close();
 
 }
 

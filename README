@@ -8,4 +8,7 @@ To run the macro do:
 . shell> root -l
 . root> .L DGBuffers.C++
 . root> .L loopDGEvents.C
-. root> eventLooper('input file name')
+. root> auto fnins = TObjArray()
+. root> fnins.Add(new TObjString("LHC17_18_AnalysisTree_2_2_2_2pi000_A.root"));
+. root> fnins.Add(new TObjString("LHC17_18_AnalysisTree_2_2_2_2pi001_A.root"));
+. root> eventLooper(fnins)
