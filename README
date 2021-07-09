@@ -3,3 +3,9 @@ The code in this repository allows to read the Double Gap (DG) events stored in 
 The events are of type DGEvent, which is defined in the files DGBuffers.[h,C].
 
 loopDGEvent.C demonstrates how to loop over the events. The script contains extensive comments.
+
+To run the macro do:
+. shell> root -l
+. root> .L DGBuffers.C++
+. root> .L loopDGEvents.C
+. root> eventLooper('input file name')

@@ -4,7 +4,6 @@
 #include "TVector3.h"
 #include "TArrayF.h"
 #include "TObjArray.h"
-#include <AliPID.h>
 
 // -----------------------------------------------------------------------------
 // structures to hold analysis CEP events
@@ -22,6 +21,7 @@ class DGTrack : public TObject
     Float_t nSigma(Int_t ind);
 
   private:
+    Int_t mnPID = 5;        // number of particle species: el, mu, pi, K, pr
     TVector3 mMomentum;
     TArrayF mnSigmas;
 

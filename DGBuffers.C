@@ -4,23 +4,23 @@
 DGTrack::DGTrack ()
 {
   mMomentum = TVector3(0., 0., 0.);
-  mnSigmas = TArrayF(AliPID::kSPECIES);
+  mnSigmas = TArrayF(mnPID);
 }
 
 DGTrack::DGTrack (TVector3 mom, const Float_t* nSigmas)
 {
   mMomentum = TVector3(mom);
-  mnSigmas = TArrayF(AliPID::kSPECIES, nSigmas);
+  mnSigmas = TArrayF(mnPID, nSigmas);
 }
 
 void DGTrack::setnSigmas(Float_t* nSigmas)
 {
-  mnSigmas.Set(AliPID::kSPECIES, nSigmas);
+  mnSigmas.Set(mnPID, nSigmas);
 }
 
 Float_t DGTrack::nSigma(Int_t ind)
 {
-  if (ind < AliPID::kSPECIES) {
+  if (ind < mnPID) {
   return mnSigmas.At(ind);
   } else {
     return -999.9;
